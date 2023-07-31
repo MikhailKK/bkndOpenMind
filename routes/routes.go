@@ -1,12 +1,12 @@
 package routes
 
-import (
-	"bkndOpenMind/handlers"
+// import (
+// 	"bkndOpenMind/handlers"
 
-	"github.com/gofiber/fiber/v2"
-)
+// 	"github.com/gofiber/fiber/v2"
+// )
 
-func SetupRoutes(app *fiber.App) {
-	app.Get("/users", handlers.GetAllUsers)
-	// Add more routes here
-}
+// func SetupRoutes(app *fiber.App) {
+// 	app.Get("/users", handlers.GetAllUsers)
+// 	// Add more routes here
+// }
