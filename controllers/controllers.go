@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"bkndOpenMind/database"
-	"my-gorm-fiber-app/models"
+	"bkndOpenMind/models"
 )
 
 func GetAllUsers() ([]models.User, error) {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"my-gorm-fiber-app/database"
-	"my-gorm-fiber-app/routes"
+	"bkndOpenMind/database"
+	"bkndOpenMind/routes"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -12,7 +12,9 @@ func main() {
 
 	// Initialize database connection
 	database.ConnectDB()
-	defer database.DB.Close()
+
+	// Defer closing the database connection when the application exits
+	// defer database.DB.Close()
 
 	// Setup routes
 	routes.SetupRoutes(app)

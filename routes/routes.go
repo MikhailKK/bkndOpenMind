@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"my-gorm-fiber-app/handlers"
+	"bkndOpenMind/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"my-gorm-fiber-app/controllers"
+	"bkndOpenMind/controllers"
 
 	"github.com/gofiber/fiber/v2"
 )

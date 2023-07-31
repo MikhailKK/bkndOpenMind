@@ -1,16 +1,16 @@
 package database
 
 import (
-	"my-gorm-fiber-app/config"
+	"bkndOpenMind/config"
 
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
 func ConnectDB() {
-	db, err := gorm.Open(mysql.Open(config.GetDatabaseURL()), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(config.GetDBurl()), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
