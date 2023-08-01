@@ -3,6 +3,7 @@ package routes
 import (
 	"bkndOpenMind/database"
 	"bkndOpenMind/models"
+	"errors"
 
 	// "bkndOpenMind/handlers"
 	"github.com/gofiber/fiber/v2"
@@ -50,4 +51,28 @@ func GetUsers(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(responceUsers)
+}
+
+// get user by ID
+func findUser(id int, user *models.User) error {
+	database.DB.Db.Find(&user, "id=?", id)
+	if user.ID == 0 {
+		return errors.New("user is not exist")
+	}
+	return nil
+}
+
+func GetUser(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id")
+
+	var user models.User
+	if err != nil {
+		return c.Status(400).JSON("There is no any users with this id")
+	}
+	if err := findUser(id, &user); err != nil {
+		return c.Status(400).JSON(err.Error())
+	}
+
+	responceuser := CreateResponceUser(user)
+	return c.Status(200).JSON(responceuser)
 }

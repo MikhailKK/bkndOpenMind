@@ -15,6 +15,7 @@ func SetupRoutes(app *fiber.App) {
 	app.Get(config.ConcatenateStrings(config.PathApi), routes.FirstEP)
 	app.Post(config.ConcatenateStrings(config.PathApi, config.PathU), routes.CreateUser)
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU), routes.GetUsers)
+	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.GetUser)
 
 	// Add more routes here
 
