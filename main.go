@@ -1,17 +1,23 @@
 package main
 
 import (
-	// "bkndOpenMind/database"
 	// "bkndOpenMind/routes"
 
+	"bkndOpenMind/config"
 	"bkndOpenMind/database"
+	"bkndOpenMind/routes"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func welcome(c *fiber.Ctx) error {
-	return c.SendString("Welcome this API")
+func SetupRoutes(app *fiber.App) {
+	app.Get(config.ConcatenateStrings(config.PathApi), routes.FirstEP)
+	app.Post(config.ConcatenateStrings(config.PathApi, config.PathU), routes.CreateUser)
+	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU), routes.GetUsers)
+
+	// Add more routes here
+
 }
 
 func main() {
@@ -19,13 +25,13 @@ func main() {
 	database.ConnectDB()
 	app := fiber.New()
 
-	app.Get("/api", welcome)
+	// app.Get("/api", routes.Welcome)
 
 	// Defer closing the database connection when the application exits
 	// defer database.DB.Close()
 
 	// Setup routes
-	// routes.SetupRoutes(app)
+	SetupRoutes(app)
 
 	// Start the server
 	// app.Listen(":3000")
