@@ -10,6 +10,7 @@ var connectDb = "DATABASE_URL"
 var PathApi = "/api/v1"
 var PathU = "/users"
 var PathID = "/:id"
+var PathP = "/products"
 
 func GetDBurl() string {
 	return os.Getenv(connectDb) // set DB connect

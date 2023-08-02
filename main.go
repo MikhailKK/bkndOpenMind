@@ -12,14 +12,20 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
+	// EP for Users
 	app.Get(config.ConcatenateStrings(config.PathApi), routes.FirstEP)
 	app.Post(config.ConcatenateStrings(config.PathApi, config.PathU), routes.CreateUser)
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU), routes.GetUsers)
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.GetUser)
 	app.Put(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.UpdateUser)
 	app.Delete(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.DeleteUser)
-	// Add more routes here
-
+	// Ep for Product
+	app.Post(config.ConcatenateStrings(config.PathApi, config.PathP), routes.CreateProduct)
+	app.Get(config.ConcatenateStrings(config.PathApi, config.PathP), routes.GetProducts)
+	app.Get(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), routes.GetProduct)
+	app.Put(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), routes.UpdateProduct)
+	app.Delete(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), routes.DeleteProduct)
+	// EP for orders
 }
 
 func main() {
