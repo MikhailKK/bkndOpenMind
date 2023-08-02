@@ -11,6 +11,7 @@ var PathApi = "/api/v1"
 var PathU = "/users"
 var PathID = "/:id"
 var PathP = "/products"
+var PathO = "/orders"
 
 func GetDBurl() string {
 	return os.Getenv(connectDb) // set DB connect

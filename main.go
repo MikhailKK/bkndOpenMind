@@ -26,6 +26,9 @@ func SetupRoutes(app *fiber.App) {
 	app.Put(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), routes.UpdateProduct)
 	app.Delete(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), routes.DeleteProduct)
 	// EP for orders
+	app.Post(config.ConcatenateStrings(config.PathApi, config.PathO), routes.CreateOrder)
+	app.Get(config.ConcatenateStrings(config.PathApi, config.PathO), routes.GetOrders)
+	app.Get(config.ConcatenateStrings(config.PathApi, config.PathO, config.PathID), routes.GetOrder)
 }
 
 func main() {
