@@ -16,7 +16,8 @@ func SetupRoutes(app *fiber.App) {
 	app.Post(config.ConcatenateStrings(config.PathApi, config.PathU), routes.CreateUser)
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU), routes.GetUsers)
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.GetUser)
-
+	app.Put(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.UpdateUser)
+	app.Delete(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), routes.DeleteUser)
 	// Add more routes here
 
 }

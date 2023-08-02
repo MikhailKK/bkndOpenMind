@@ -61,7 +61,6 @@ func findUser(id int, user *models.User) error {
 	}
 	return nil
 }
-
 func GetUser(c *fiber.Ctx) error {
 	id, err := c.ParamsInt("id")
 
@@ -75,4 +74,54 @@ func GetUser(c *fiber.Ctx) error {
 
 	responceuser := CreateResponceUser(user)
 	return c.Status(200).JSON(responceuser)
+}
+
+// update Users
+func UpdateUser(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id")
+
+	var user models.User
+	if err != nil {
+		return c.Status(400).JSON("There is no any users with this id")
+	}
+	if err := findUser(id, &user); err != nil {
+		return c.Status(400).JSON(err.Error())
+	}
+	type UpdateUser struct {
+		FirstName string `json:"first_name"`
+		LastName  string `json:"last_name"`
+		Email     string `json:"email"`
+	}
+	var updateData UpdateUser
+
+	if err := c.BodyParser(&updateData); err != nil {
+		return c.Status(500).JSON(err.Error())
+	}
+
+	user.FirstName = updateData.FirstName
+	user.LastName = updateData.LastName
+	user.Email = updateData.Email
+	database.DB.Db.Save(&user)
+
+	responceUser := CreateResponceUser(user)
+	return c.Status(200).JSON(responceUser)
+}
+
+// delete user
+func DeleteUser(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id")
+
+	var user models.User
+	if err != nil {
+		return c.Status(400).JSON("There is no any users with this id")
+	}
+	if err := findUser(id, &user); err != nil {
+		return c.Status(400).JSON(err.Error())
+	}
+
+	if err := database.DB.Db.Delete(&user).Error; err != nil {
+		return c.Status(400).JSON(err.Error())
+	}
+
+	return c.Status(200).SendString("Delete is succefully")
 }
