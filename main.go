@@ -15,6 +15,7 @@ import (
 func main() {
 	// Initialize database connection
 	database.ConnectDB()
+
 	app := fiber.New()
 	// Применение BasicAuthMiddleware для всего приложения
 	// app.Use(auth.BasicAuthMiddleware)

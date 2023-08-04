@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -36,7 +37,7 @@ func init() {
 	go func() {
 		for {
 			select {
-			case <-time.After(5 * time.Minute):
+			case <-time.After(5 * time.Second):
 				currentUserCount := GetUserCount()
 				if currentUserCount > prevUserCount {
 					s := currentUserCount - prevUserCount
@@ -55,15 +56,17 @@ func GetUserCount() int {
 	return int(count)
 }
 
-const (
-	telegramToken = "6529568374:AAH62hPem7MKcmLBtit5TYb1q7EGXOYwZHY"
-	telegramID    = "315156239"
-)
+var telegramID = "315156239"
+var TelegramToken = "TELEGA_TOKEN"
+
+func GetTelegaToken() string {
+	return os.Getenv(TelegramToken)
+}
 
 // отправка в телеграмм
 func SendTelegramMessage(message string) error {
 	apiURL := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-		telegramToken, telegramID, message)
+		GetTelegaToken(), telegramID, message)
 
 	// Отправка HTTP GET запроса на API Telegram
 	go func() {
