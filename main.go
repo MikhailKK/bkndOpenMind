@@ -1,10 +1,10 @@
 package main
 
 import (
-	"bkndOpenMind/auth"
 	"bkndOpenMind/config"
 	"bkndOpenMind/controllers"
 	"bkndOpenMind/database"
+	"bkndOpenMind/middleware"
 	"bkndOpenMind/routes"
 	"log"
 	"net/http"
@@ -18,13 +18,16 @@ func main() {
 
 	app := fiber.New()
 	// Применение BasicAuthMiddleware для всего приложения
-	// app.Use(auth.BasicAuthMiddleware)
+	// app.Use(middleware.BasicAuthMiddleware)
+
+	// Используем CorsMiddleware из файла middlewares.go
+	app.Use(middleware.CorsMiddleware)
 
 	// Применение BasicAuthMiddleware только к конкретному эндпоинту
-	app.Delete(config.PathApi+config.PathU+config.PathID, auth.BasicAuthMiddleware, auth.ProtectedEndpoint)
-	app.Delete(config.PathApi+config.PathP+config.PathID, auth.BasicAuthMiddleware, auth.ProtectedEndpoint)
-	app.Get(config.PathApi+config.PathU, auth.BasicAuthMiddleware, auth.ProtectedEndpoint)
-	app.Get(config.PathApi+config.PathO, auth.BasicAuthMiddleware, auth.ProtectedEndpoint)
+	app.Delete(config.PathApi+config.PathU+config.PathID, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
+	app.Delete(config.PathApi+config.PathP+config.PathID, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
+	// app.Get(config.PathApi+config.PathU, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
+	app.Get(config.PathApi+config.PathO, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
 
 	// Defer closing the database connection when the application exits
 	// defer database.DB.Close()

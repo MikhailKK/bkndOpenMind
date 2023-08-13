@@ -14,9 +14,6 @@ var PathP = "/products"
 var PathO = "/orders"
 
 var Username = "USER_NAME"
-var TelegramToken = "TELEGA_TOKEN"
-var TelegramID = "TELEGA_ID"
-
 // var Password = "PASSWORD"
 
 func GetDBurl() string {
@@ -36,12 +33,7 @@ func GetUserName() string {
 // 	return os.Getenv(Password)
 // }
 
-func GetTelegaToken() string {
-	return os.Getenv(TelegramToken)
-}
-func GetTelegaID() string {
-	return os.Getenv(TelegramID)
-}
+
 
 // func GetPath(...string) string {
 // 	a := []string{}

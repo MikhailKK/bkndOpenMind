@@ -37,7 +37,7 @@ func init() {
 	go func() {
 		for {
 			select {
-			case <-time.After(5 * time.Second):
+			case <-time.After(5 * time.Minute):
 				currentUserCount := GetUserCount()
 				if currentUserCount > prevUserCount {
 					s := currentUserCount - prevUserCount
