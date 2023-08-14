@@ -5,7 +5,6 @@ import (
 	"bkndOpenMind/models"
 	"errors"
 
-	// "bkndOpenMind/handlers"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -13,8 +12,7 @@ type UserSerializer struct {
 	// this is not the model of user it's serializer
 	ID        uint   `json:"id"`
 	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Email     string `json:"email"`
+	Phone     string `json:"phone"`
 }
 
 // simple EP
@@ -22,13 +20,13 @@ func FirstEP(c *fiber.Ctx) error {
 	return c.SendString("The API")
 }
 
-func CreateResponceUser(userModel models.User) UserSerializer {
-	return UserSerializer{ID: userModel.ID, FirstName: userModel.FirstName, LastName: userModel.LastName, Email: userModel.Email}
+func CreateResponceUser(userModel models.Users) UserSerializer {
+	return UserSerializer{ID: userModel.ID, FirstName: userModel.FirstName, Phone: userModel.Phone}
 }
 
 // create new user
 func CreateUser(c *fiber.Ctx) error {
-	var user models.User
+	var user models.Users
 
 	if err := c.BodyParser(&user); err != nil {
 		return c.Status(400).JSON(err.Error())
@@ -41,7 +39,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 // get all users
 func GetUsers(c *fiber.Ctx) error {
-	users := []models.User{}
+	users := []models.Users{}
 
 	database.DB.Db.Find(&users)
 	responceUsers := []UserSerializer{}
@@ -54,17 +52,18 @@ func GetUsers(c *fiber.Ctx) error {
 }
 
 // get user by ID
-func findUser(id int, user *models.User) error {
+func findUser(id int, user *models.Users) error {
 	database.DB.Db.Find(&user, "id=?", id)
 	if user.ID == 0 {
 		return errors.New("user is not exist")
 	}
 	return nil
 }
+
 func GetUser(c *fiber.Ctx) error {
 	id, err := c.ParamsInt("id")
 
-	var user models.User
+	var user models.Users
 	if err != nil {
 		return c.Status(400).JSON("There is no any users with this id")
 	}
@@ -80,7 +79,7 @@ func GetUser(c *fiber.Ctx) error {
 func UpdateUser(c *fiber.Ctx) error {
 	id, err := c.ParamsInt("id")
 
-	var user models.User
+	var user models.Users
 	if err != nil {
 		return c.Status(400).JSON("There is no any users with this id")
 	}
@@ -89,8 +88,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	}
 	type UpdateUser struct {
 		FirstName string `json:"first_name"`
-		LastName  string `json:"last_name"`
-		Email     string `json:"email"`
+		Phone     string `json:"phone"`
 	}
 	var updateData UpdateUser
 
@@ -99,8 +97,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	}
 
 	user.FirstName = updateData.FirstName
-	user.LastName = updateData.LastName
-	user.Email = updateData.Email
+	user.Phone = updateData.Phone
 	database.DB.Db.Save(&user)
 
 	responceUser := CreateResponceUser(user)
@@ -111,7 +108,7 @@ func UpdateUser(c *fiber.Ctx) error {
 func DeleteUser(c *fiber.Ctx) error {
 	id, err := c.ParamsInt("id")
 
-	var user models.User
+	var user models.Users
 	if err != nil {
 		return c.Status(400).JSON("There is no any users with this id")
 	}

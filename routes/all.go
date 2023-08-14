@@ -15,13 +15,13 @@ func SetupRoutes(app *fiber.App) {
 	app.Put(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), UpdateUser)
 	app.Delete(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), DeleteUser)
 	// Ep for Product
-	app.Post(config.ConcatenateStrings(config.PathApi, config.PathP), CreateProduct)
-	app.Get(config.ConcatenateStrings(config.PathApi, config.PathP), GetProducts)
-	app.Get(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), GetProduct)
-	app.Put(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), UpdateProduct)
-	app.Delete(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), DeleteProduct)
+	// app.Post(config.ConcatenateStrings(config.PathApi, config.PathP), CreateProduct)
+	// app.Get(config.ConcatenateStrings(config.PathApi, config.PathP), GetProducts)
+	// app.Get(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), GetProduct)
+	// app.Put(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), UpdateProduct)
+	// app.Delete(config.ConcatenateStrings(config.PathApi, config.PathP, config.PathID), DeleteProduct)
 	// EP for orders
-	app.Post(config.ConcatenateStrings(config.PathApi, config.PathO), CreateOrder)
-	app.Get(config.ConcatenateStrings(config.PathApi, config.PathO), GetOrders)
-	app.Get(config.ConcatenateStrings(config.PathApi, config.PathO, config.PathID), GetOrder)
+	// app.Post(config.ConcatenateStrings(config.PathApi, config.PathO), CreateOrder)
+	// app.Get(config.ConcatenateStrings(config.PathApi, config.PathO), GetOrders)
+	// app.Get(config.ConcatenateStrings(config.PathApi, config.PathO, config.PathID), GetOrder)
 }

@@ -14,6 +14,7 @@ var PathP = "/products"
 var PathO = "/orders"
 
 var Username = "USER_NAME"
+
 // var Password = "PASSWORD"
 
 func GetDBurl() string {
@@ -32,8 +33,6 @@ func GetUserName() string {
 // func GetPassword() string {
 // 	return os.Getenv(Password)
 // }
-
-
 
 // func GetPath(...string) string {
 // 	a := []string{}

@@ -25,9 +25,7 @@ func main() {
 
 	// Применение BasicAuthMiddleware только к конкретному эндпоинту
 	app.Delete(config.PathApi+config.PathU+config.PathID, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
-	app.Delete(config.PathApi+config.PathP+config.PathID, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
 	// app.Get(config.PathApi+config.PathU, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
-	app.Get(config.PathApi+config.PathO, middleware.BasicAuthMiddleware, middleware.ProtectedEndpoint)
 
 	// Defer closing the database connection when the application exits
 	// defer database.DB.Close()

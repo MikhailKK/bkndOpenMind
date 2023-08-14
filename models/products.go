@@ -1,11 +1,11 @@
 package models
 
-import "time"
+// import "time"
 
-type Product struct {
-	ID           uint `json:"id" gorm:"primaryKey"`
-	CreatedAt    time.Time
-	Name         string `json:"name"`
-	SerialNumber string `json:"serial_number"`
-	Price        int16  `json:"price"`
-}
+// type Product struct {
+// 	ID           uint `json:"id" gorm:"primaryKey"`
+// 	CreatedAt    time.Time
+// 	Name         string `json:"name"`
+// 	SerialNumber string `json:"serial_number"`
+// 	Price        int16  `json:"price"`
+// }

@@ -52,7 +52,7 @@ func init() {
 // GetUserCount селектит количество записей в таблице Users
 func GetUserCount() int {
 	var count int64
-	database.DB.Db.Model(&models.User{}).Count(&count)
+	database.DB.Db.Model(&models.Users{}).Count(&count)
 	return int(count)
 }
 
