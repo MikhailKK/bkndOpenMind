@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// структура для users
 type UserSerializer struct {
 	// this is not the model of user it's serializer
 	ID        uint   `json:"id"`
@@ -15,7 +16,6 @@ type UserSerializer struct {
 	Phone     string `json:"phone"`
 }
 
-// simple EP
 func FirstEP(c *fiber.Ctx) error {
 	return c.SendString("The API")
 }
@@ -24,8 +24,9 @@ func CreateResponceUser(userModel models.Users) UserSerializer {
 	return UserSerializer{ID: userModel.ID, FirstName: userModel.FirstName, Phone: userModel.Phone}
 }
 
-// create new user
+// создание пользователя и request
 func CreateUser(c *fiber.Ctx) error {
+	CreateRequest(c)
 	var user models.Users
 
 	if err := c.BodyParser(&user); err != nil {

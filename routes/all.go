@@ -7,9 +7,10 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
-	// EP for Users
+
 	app.Get(config.ConcatenateStrings(config.PathApi), FirstEP)
 	app.Post(config.ConcatenateStrings(config.PathApi, config.PathU), CreateUser)
+
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU), GetUsers)
 	app.Get(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), GetUser)
 	app.Put(config.ConcatenateStrings(config.PathApi, config.PathU, config.PathID), UpdateUser)
@@ -24,4 +25,5 @@ func SetupRoutes(app *fiber.App) {
 	// app.Post(config.ConcatenateStrings(config.PathApi, config.PathO), CreateOrder)
 	// app.Get(config.ConcatenateStrings(config.PathApi, config.PathO), GetOrders)
 	// app.Get(config.ConcatenateStrings(config.PathApi, config.PathO, config.PathID), GetOrder)
+
 }
