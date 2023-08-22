@@ -26,7 +26,7 @@ func CreateResponceUser(userModel models.Users) UserSerializer {
 
 // создание пользователя и request
 func CreateUser(c *fiber.Ctx) error {
-	CreateRequest(c)
+	// CreateRequest(c)
 	var user models.Users
 
 	if err := c.BodyParser(&user); err != nil {

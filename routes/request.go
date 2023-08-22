@@ -19,7 +19,7 @@ func CreateResponceRequest(requestModel models.Request) RequestSerializer {
 // create new request
 func CreateRequest(c *fiber.Ctx) error {
 	var request models.Request
-
+	CreateUser(c)
 	if err := c.BodyParser(&request); err != nil {
 		return c.Status(400).JSON(err.Error())
 	}

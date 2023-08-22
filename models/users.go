@@ -9,7 +9,7 @@ type Users struct {
 	FirstName string `json:"first_name" gorm:"not null"`
 	Phone     string `json:"phone"`
 	Email     string `json:"email"`
-	// RequestID uint    `json:"request_id" gorm:"foreignKey:RequestID"`
+	// RequestID uint   `json:"request_id" gorm:"foreignKey:RequestID"`
 	// Request   Request `json:"request"`
 }
 
