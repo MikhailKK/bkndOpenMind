@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  backend:
+    image: backend-image:latest
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: test_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    networks:
+      - backend-network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+
+  frontend:
+    image: frontend-image:latest
+    networks:
+      - frontend-network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+
+  nginx:
+    image: nginx:1.18
+    ports:
+      - "80:80"
+    networks:
+      - frontend-network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    networks:
+      - backend-network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+
+networks:
+  backend-network:
+  frontend-network:
