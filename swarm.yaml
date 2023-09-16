@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   backend:
-    image: backend-image:latest
+    image: prot0s/private:misha-back-v0.1
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432

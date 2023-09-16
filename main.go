@@ -10,8 +10,6 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
-
-	_ "bkndOpenMind/docs"
 )
 
 func main() {
